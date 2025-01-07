@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: note-app-service
+spec:
+  type: {{ .Values.noteApp.service.type }}
+  ports:
+    - port: {{ .Values.noteApp.service.port }}
+      targetPort: {{ .Values.noteApp.service.targetPort }}
+      nodePort: {{ .Values.noteApp.service.nodePort }}
+  selector:
+    app: note-app

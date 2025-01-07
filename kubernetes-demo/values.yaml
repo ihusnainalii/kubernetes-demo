@@ -1,0 +1,66 @@
+# Default values for kubernetes-demo.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+mongodb:
+  replicas: 1
+  container:
+    port: 8081 
+    image:
+      repository: mongo
+      tag: latest
+  service:
+    port: 27017
+    targetPort: 27017
+    protocol: TCP
+
+mongoExpress:
+  replicas: 1
+  container: 
+    port: 8081
+    image:
+      repository: mongo-express
+      tag: latest
+  service:
+    type: NodePort
+    nodePort: 30100
+    port: 8081
+    targetPort: 8081
+    protocol: TCP
+
+noteServer: 
+  replicas: 1
+  container: 
+    port: 5000
+    image:
+      repository: ghcr.io/ananya2001-an/note-server
+      tag: latest
+    dbName: database
+    dbServer: mongodb-service
+  service:
+    port: 5000
+    targetPort: 5000
+    protocol: TCP
+
+noteApp:
+  replicas: 1
+  container: 
+    port: 80
+    image:
+      repository: ghcr.io/ananya2001-an/note
+      tag: latest
+  service:
+    type: NodePort
+    nodePort: 30101
+    port: 3000
+    targetPort: 80
+    protocol: TCP
+
+secrets:
+  mongoUser: admin
+  mongoPassword: pass
+
+config:
+  mongoUrl: mongodb-service

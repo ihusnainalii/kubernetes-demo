@@ -1,0 +1,12 @@
+
+helm install kubernetes-demo ./kubernetes-demo    
+helm upgrade --install kubernetes-demo ./kubernetes-demo
+helm uninstall kubernetes-demo       
+
+minikube start
+minikube service mongo-express-service       
+minikube service note-app-service
+
+kubectl get service       
+kubectl get configmap
+kubectl get secrets

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: note-server-deployment
+  labels:
+    app: note-server
+spec:
+  replicas: {{ .Values.noteServer.replicas }}
+  selector:
+    matchLabels:
+      app: note-server
+  template:
+    metadata:
+      labels:
+        app: note-server
+    spec:
+      containers:
+        - name: note-server
+          image: "{{ .Values.noteServer.container.image.repository }}:{{ .Values.noteServer.container.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.noteServer.container.port }}
+          env:
+            - name: MONGODB_URI
+              value: "mongodb://{{ .Values.noteServer.container.dbServer }}:{{ .Values.mongodb.service.port }}"
+            - name: DB_NAME
+              value: {{ .Values.noteServer.container.dbName }}
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: mongo-user
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: mongo-password
