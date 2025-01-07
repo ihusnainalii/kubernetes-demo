@@ -3,6 +3,7 @@
 This project demonstrates deploying a full-stack application on Kubernetes using Helm. It consists of MongoDB, Mongo Express, a Note API server, and a Note application. The chart includes configurations for deployments, services, secrets, and a config map.
 
 ## Project Structure
+```
 .
 ├── README.md
 └── kubernetes-demo
@@ -24,7 +25,7 @@ This project demonstrates deploying a full-stack application on Kubernetes using
     │       ├── note-server-service.yaml
     │       └── note-service.yaml
     └── values.yaml
-
+```
 
 ## Components
 
