@@ -58,6 +58,7 @@ This project demonstrates deploying a full-stack application on Kubernetes using
 - Kubernetes Cluster
 - Helm 3.x
 - kubectl
+- minikube
 
 ## Installation
 
