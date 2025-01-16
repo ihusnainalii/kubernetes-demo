@@ -6,8 +6,8 @@ metadata:
     app: note-server
 spec:
   ports:
-    - protocol: {{ .Values.mongodb.service.protocol }}
-      port: {{ .Values.mongodb.service.port }}
-      targetPort: {{ .Values.mongodb.service.targetPort }}
+    - protocol: {{ .Values.noteServer.service.protocol }}
+      port: {{ .Values.noteServer.service.port }}
+      targetPort: {{ .Values.noteServer.service.targetPort }}
   selector:
     app: note-server
